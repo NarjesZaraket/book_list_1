@@ -1,0 +1,28 @@
+name: book_list_1
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  carousel_slider: ^5.0.0
+  flutter:
+    sdk: flutter
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/scific.jpg
+    - assets/images/fiction.jpg
+    - assets/images/romance.jpg
+    - assets/images/mystery.jpg
+    - assets/images/horror.jpg
+    - assets/images/history.jpg
