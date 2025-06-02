@@ -4,31 +4,38 @@ import 'package:book_list_1/screens/book_details.dart';
 
 class BookCard extends StatelessWidget {
   const BookCard({super.key, required this.book, required this.currentlyReading,
-                  required this.favorite, required this.onDeteteBook});
+    required this.favorites,
+    required this.onDeteteBook,
+    required this.onBookUpdate
+  });
   final Book book;
   final List<Book> currentlyReading;
-  final List<Book> favorite;
+  final List<Book> favorites;
   final Function(Book) onDeteteBook;
+  final Function() onBookUpdate;
 
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: const Color.fromARGB(224, 255, 244, 174),
       child: InkWell(
         splashColor: const Color.fromARGB(108, 201, 23, 23),
         borderRadius: BorderRadius.circular(50),
-        onTap: () {
+        onTap: () { final result =
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (ctx) => BookDetails(
                         book: book,
                         currentlyReading: currentlyReading,
-                        favorite: favorite,
+                        favorites: favorites,
                         onDeteteBook: onDeteteBook,
                       )
               )
           );
+          if(result == true)
+          {onBookUpdate;}
           
         },
         child: Padding(
@@ -44,7 +51,8 @@ class BookCard extends StatelessWidget {
                 Image.asset(genreImage[book.genre]!, height: 200, fit: BoxFit.cover),
               ),
               SizedBox(height: 10),
-              Text(book.title)
+              Text(book.title, style: TextStyle(color: const Color.fromARGB(225, 78, 7, 20),
+                    ),)
             ],
           ),
       ),

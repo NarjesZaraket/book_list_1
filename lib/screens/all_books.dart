@@ -4,11 +4,15 @@ import 'package:book_list_1/widgets/book_card.dart';
 
 class AllBooksList extends StatefulWidget {
   const AllBooksList({super.key, required this.allBooksList, required this.currentlyReading,
-                      required this.favorite, required this.onDeteteBook});
+    required this.favorites,
+    required this.onDeteteBook,
+    required this.onBookUpdate
+  });
   final List<Book> allBooksList;
   final List<Book> currentlyReading;
-  final List<Book> favorite;
+  final List<Book> favorites;
   final Function(Book) onDeteteBook;
+  final Function() onBookUpdate;
 
 
   @override
@@ -18,10 +22,18 @@ class AllBooksList extends StatefulWidget {
 class _AllBooksListState extends State<AllBooksList> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('All My Book'),),
-      body: 
-    GridView.builder(
+    Widget mainContent = Padding(
+      padding: const EdgeInsets.all(10),
+      child: Center(
+        child: Text(
+          'No Books yet!\nStart Your Reading Journey Now!',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18,),
+        ),
+      ),
+    );
+    if (widget.allBooksList.isNotEmpty) {
+      mainContent = GridView.builder(
       itemCount: widget.allBooksList.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -30,8 +42,20 @@ class _AllBooksListState extends State<AllBooksList> {
         mainAxisSpacing: 12,), 
       itemBuilder: (ctx , index) => BookCard(book: widget.allBooksList[index], 
                           currentlyReading: widget.currentlyReading,
-                          favorite: widget.favorite,
-                          onDeteteBook: widget.onDeteteBook,)
+                          favorites: widget.favorites,
+                          onDeteteBook: widget.onDeteteBook,
+                          onBookUpdate: widget.onBookUpdate,)
+      );
+    }
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(239, 235, 244, 100),
+      appBar: AppBar(title: Text('All My Book', style: TextStyle(
+        fontFamily: 'Cinzel',
+        color: Colors.white),), 
+      backgroundColor: const Color.fromARGB(225, 78, 7, 20),),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: mainContent,
       )
     );
     }

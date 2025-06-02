@@ -48,14 +48,22 @@ class _NewGoalState extends State<NewGoal> {
       return;
     }
 
-    final newGoal = Goals(bookToFinish: _selectedBook!, dueDate: _selectedDate!);
+    final newGoal = Goals( bookId: _selectedBook?.id ?? -1,bookToFinish: _selectedBook!, 
+                            dueDate: _selectedDate!);
     widget.addNewGoal(newGoal);
     Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Scaffold(
+      appBar: AppBar(
+              title: Text('Add New Goal', style: TextStyle(color: Colors.white, fontFamily: 'Cinzel',),),
+              backgroundColor: const Color.fromARGB(225, 78, 7, 20),
+              iconTheme: IconThemeData(color: Colors.white,)
+              ),
+      body:
+    Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
@@ -92,22 +100,40 @@ class _NewGoalState extends State<NewGoal> {
             ],
           ),
           const SizedBox(height: 16),
+          Spacer(),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(225, 78, 7, 20),
+                  foregroundColor: Colors.white,
+                                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    ),
                 child: const Text('Cancel'),
               ),
-              const SizedBox(width: 10),
               ElevatedButton(
                 onPressed: _submitGoalForm,
+                style: ElevatedButton.
+                          styleFrom(backgroundColor: const Color.fromARGB(225, 78, 7, 20), 
+                                    foregroundColor: Colors.white,
+                                    padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
                 child: const Text('Save Goal'),
               ),
             ],
           ),
         ],
       ),
+    ),
     );
   }
 }

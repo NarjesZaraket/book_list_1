@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key, required this.favorites, required this.currentlyReading,
-                        required this.onDeteteBook});
+                        required this.onDeteteBook,
+                        required this.onBookUpdate});
   final List<Book> favorites;
   final List<Book> currentlyReading;
   final Function(Book) onDeteteBook;
+  final Function() onBookUpdate;
 
   @override
   State<FavoritesScreen> createState() => _FavoritesScreenState();
@@ -31,12 +33,21 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     );
     if (widget.favorites.isNotEmpty) {
       mainContent = BookList(bookList: widget.favorites, currentlyReading: widget.currentlyReading, 
-                    favorite: widget.favorites,
-                    onDeteteBook: widget.onDeteteBook,);
+                    favorites: widget.favorites,
+                    onDeteteBook: widget.onDeteteBook,
+                    onBookUpdate: widget.onBookUpdate,);
     }
     return Scaffold(
-      appBar: AppBar(title: Text('My Favorite Book'),),
-      body: mainContent
+      backgroundColor: const Color.fromRGBO(239, 235, 244, 100),
+      appBar: AppBar(title: Text('My Favorite Book', style: TextStyle(
+        fontFamily: 'Cinzel',
+        color: Colors.white
+      ),),
+        backgroundColor: const Color.fromARGB(225, 78, 7, 20),),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: mainContent,
+      )
     );
   }
 }

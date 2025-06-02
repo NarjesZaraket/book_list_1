@@ -4,12 +4,15 @@ import 'package:book_list_1/widgets/book_card.dart';
 
 class BookList extends StatelessWidget {
   const BookList({super.key, required this.bookList, required this.currentlyReading,
-                  required this.favorite, required this.onDeteteBook});
+    required this.favorites,
+    required this.onDeteteBook,
+    required this.onBookUpdate,
+  });
   final List<Book> bookList;
   final List<Book> currentlyReading;
-  final List<Book> favorite;
+  final List<Book> favorites;
   final Function(Book) onDeteteBook;
-
+  final Function() onBookUpdate;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -21,8 +24,9 @@ class BookList extends StatelessWidget {
         mainAxisSpacing: 12,), 
       itemBuilder: (ctx , index) => BookCard(book: bookList[index], 
                      currentlyReading: currentlyReading,
-                     favorite: favorite,
-                     onDeteteBook: onDeteteBook,)
+                     favorites: favorites,
+                     onDeteteBook: onDeteteBook,
+                     onBookUpdate: onBookUpdate,)
       );
   }
 }

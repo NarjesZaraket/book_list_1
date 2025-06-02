@@ -58,7 +58,13 @@ class _NewBookState extends State<NewBook> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add New Book')),
+      backgroundColor: const Color.fromRGBO(239, 235, 244, 100),
+      appBar: AppBar(title: Text('Add New Book', style: TextStyle(
+        fontFamily: 'Cinzel',
+        color: Colors.white,
+      ),),
+        backgroundColor: const Color.fromARGB(225, 78, 7, 20),
+        iconTheme: IconThemeData(color: Colors.white,)),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -109,14 +115,14 @@ class _NewBookState extends State<NewBook> {
                 ElevatedButton(
                   onPressed: (){Navigator.pop(context);},
                   style: ElevatedButton.
-                          styleFrom(backgroundColor: Colors.black, 
+                          styleFrom(backgroundColor: const Color.fromARGB(225, 78, 7, 20), 
                                     foregroundColor: Colors.white,
                                     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12),
                                     ),
                                     textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),), 
-                  child: Text('cancel')
+                  child: Text('cancel'),
                   ),
 
                 Spacer(),
@@ -124,7 +130,7 @@ class _NewBookState extends State<NewBook> {
                 ElevatedButton(
                   onPressed: _submitBookForm, 
                   style: ElevatedButton.
-                          styleFrom(backgroundColor: Colors.black, 
+                          styleFrom(backgroundColor: const Color.fromARGB(225, 78, 7, 20), 
                                     foregroundColor: Colors.white,
                                     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                                     shape: RoundedRectangleBorder(
